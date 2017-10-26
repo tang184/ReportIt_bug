@@ -1,0 +1,180 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+{% if not user.is_authenticated %}
+<div class="row">
+    <div class="12u">
+
+      <!-- Text -->
+        <section class="box">
+          <header>
+            <h3>Please Log in</h3>
+          <hr />
+				<ul class="actions">
+					<li><a href="/login" class="button special">Log In</a></li>
+					<li><a href="/reporterSignup" class="button">Reporter Signup</a></li>
+					<li><a href="/agentSignup" class="button alt">Agent Signup</a></li>
+				</ul>
+
+        </section>
+
+    </div>
+  </div>
+{% else %}
+	<!-- Main -->
+	<section id="main" class="container">
+		<header>
+			<h2>My Concerns</h2>
+			<p>Concern</p>
+		</header>
+
+
+		<div class="row">
+			<div class="12u">
+
+				<!-- Table -->
+					<section class="box">
+						<div class="table-wrapper">
+							{% if concern != Null %}
+							<table class="table table-striped">
+
+
+								<div class="col-md-6">
+
+								<div style="margin:10px">
+								<label>Concern Title</label>{{ concern.title }}
+								</div>
+								<div style="margin:10px">
+								<label>Reporter</label><a href="/account/viewprofile/username?={{ concern.reporter.user }}">{{ concern.reporter.user }}</a>
+								</div>
+								<div style="margin:10px">
+								<label>Report Agent</label>
+								{% for ele in concern.target_agent.all %}
+
+						    	<a href="/account/viewprofile/username?={{ ele.user }}">{{ ele.legal_name }}</a>, 
+
+						    	{% endfor %}
+						   		</div>
+								<div style="margin:10px">
+								<label>Concern Content</label>{{ concern.content }}						
+								</div>
+
+								<div style="margin:10px">
+								<label>Upvote Count</label>{{ concern.upvote_count }}						
+								</div>
+
+								<div style="margin:10px">
+								<label>Resolved</label>{{ concern.isSolved }}						
+								</div>
+
+								<div style="margin:10px">
+								<label>Respond</label>{{ concern.respond }}						
+								</div>
+
+									
+								{% if user == concern.reporter.user %}
+								
+
+									<form method="post" action="/account/editSpecificConcern/id?={{ concern.id }}">
+
+									{% csrf_token %}
+
+									<button type="submit" id="edit" class="btn btn-primary " name="edit">Edit Concern</button>
+									</form> 
+
+									{% if not concern.isSolved %}
+
+									<form method="post" action="/account/resolveSpecificConcern/id?={{ concern.id }}">
+
+									{% csrf_token %}
+									<button type="submit" id="resolve_submit_button" class="btn btn-primary ">Mark as Solve</button>
+									</form> 
+
+									{% else %}
+
+									<form method="post" action="/account/unsolveSpecificConcern/id?={{ concern.id }}">
+
+									{% csrf_token %}
+									<button type="submit" id="unsolve_submit_button" class="btn btn-primary ">Mark as Unsolve</button>
+									</form> 
+
+									{% endif %}
+
+									<form method="post" action="/account/respondConcern/id?={{ concern.id }}">
+
+									{% csrf_token %}
+									<textarea rows="4" cols="50" name="respond" id="respond" maxlength="500" /></textarea>
+									<button type="submit" id="unsolve_submit_button" class="btn btn-warning ">Respond</button>
+									</form>
+
+								{% elif isagent %}
+
+									{% if not concern.isSolved %}
+
+									<form method="post" action="/account/resolveSpecificConcern/id?={{ concern.id }}">
+
+									{% csrf_token %}
+									<button type="submit" id="resolve_submit_button" class="btn btn-primary ">Mark as Solve</button>
+									</form> 
+
+									<form method="post" action="/account/resolveSpecificConcern/id?={{ concern.id }}">
+
+									{% csrf_token %}
+									<button type="submit" id="downvote_submit_button" class="btn btn-danger ">Mark as Duplicate</button>
+									</form> 
+
+									{% endif %}									
+
+
+									<form method="post" action="/account/respondConcern/id?={{ concern.id }}">
+
+									{% csrf_token %}
+									<textarea rows="4" cols="50" name="respond" id="respond" maxlength="500" /></textarea>
+									<button type="submit" id="unsolve_submit_button" class="btn btn-warning ">Respond Concern</button>
+									</form>
+
+
+								{% else %}
+
+									<form method="post" action="/account/upvoteSpecificConcern/id?={{ concern.id }}">
+
+									{% csrf_token %}
+
+									<button type="submit" id="upvote_submit_button" class="btn btn-info ">Upvote</button>
+									</form>
+
+									<form method="post" action="/account/downvoteSpecificConcern/id?={{ concern.id }}">
+
+									{% csrf_token %}
+									<button type="submit" id="downvote_submit_button" class="btn btn-warning ">Downvote</button>
+									</form> 
+
+								{% endif %}
+								</div>
+
+								<div class="col-md-6">
+									{% if concern.image %}
+										<img src="{% static 'images/not-available.jpg' %}">
+									{% else %}
+										<img src="{% static 'images/not-available.jpg' %}">
+									{% endif %}
+								</div>
+								
+								
+							</table>
+							{% else %}
+							<a> No data has been retriven! </a>
+							{% endif %}
+						</div>
+
+					</section>
+
+			</div>
+		</div>
+
+{% endif %}
+{% endblock %}
+

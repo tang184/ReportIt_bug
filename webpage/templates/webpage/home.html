@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Website CSS style -->
+		{% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'webpage/signup.css' %}"/>
+
+		<!-- Website Font style -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+		<!-- Google Fonts -->
+		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+		<title>ReportIt Homepage</title>
+	</head>
+
+    <body>
+
+
+        <div class="container">
+			<div class="row main">
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">ReportIt Homepage</h1>
+	               		<hr />
+	               	</div>
+	            </div>
+
+
+				{% if user.is_authenticated %}
+				<li><a href="/account/profile/" name="profile" id="profile">{{request.user.username}}'s Profile </a></li>
+				  <li><a href="/logout?next=/" name="logout" id="logout"> Log out</a></li>
+				{% else %}
+				  <li><a href="/login" name="login" id="login">Login</a></li>
+				  <li><a href="/reporterSignup" name="reporterSignup" id="reporterSignup">ReporterSignup</a></li>
+				  <li><a href="/agentSignup"  name="agentSignup" id="agentSignup">AgentSignup</a></li>
+				{% endif %}
+
+                <!-- <div class="login">
+                <a href="/login">Login</a>
+                </div>
+
+                <div class="reporterSignup">
+                    <a href="/reporterSignup">Reporter Signup</a>
+                </div>
+
+                <div class="agentSignup">
+                    <a href="/agentSignup">Agent Signup</a>
+                </div>
+            </div>
+        </div> -->
+    </body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Website CSS style -->
+		{% load staticfiles %}
+		
+		<link rel="stylesheet" type="text/css" href="{% static 'webpage/bootstrap.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'webpage/signup.css' %}"/>
+		<!-- Website Font style -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+		
+		<!-- Google Fonts -->
+		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+		<title>Reporter Signup</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row main">
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">ReportIt Reporter Signup</h1>
+	               		<hr />
+	               	</div>
+	            </div> 
+				<div class="main-login main-center">
+					<form class="form-horizontal" method="post" action="#">
+						{% csrf_token %}
+
+						{% if notReporter %}
+			            <div id="require-signup" class="alert alert-danger alert-dismissible" role="alert">You are not currently signed up as reporter!.</div>
+			            {% endif %}
+
+						{% for field in form1 %}
+						<p>
+							{{ field.label_tag }}<br>
+        					{{ field }}
+        					
+       						{% for error in field.errors %}
+							<p style="color: red">{{ error }}</p>
+							{% endfor %}
+						{% endfor %}
+
+						{% for field in form2 %}
+						<p>
+							{{ field.label_tag }}<br>
+        					{{ field }}
+        					
+       						{% for error in field.errors %}
+							<p style="color: red">{{ error }}</p>
+							{% endfor %}
+					  	</p>
+						{% endfor %}
+						<!--
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">UserName</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your UserName"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password1" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="password" id="password1"  placeholder="Enter your Password"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password2" class="cols-sm-2 control-label">Confirm Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="confirm" id="password2"  placeholder="Confirm your Password"/>
+								</div>
+							</div>
+						</div>-->
+
+						<div class="form-group ">
+							<button type="submit" class="btn btn-primary login-button" name="signup_submit" id="signup_submit">Register</button>
+						</div>
+						<div class="btn login">
+				            <a href="/login" name="login" id="login">Login</a>
+				         </div>
+						<div class="btn homepage">
+				            <a href="/" name="hoempage" id="hoempage">Homepage</a>
+				         </div>
+				         <div class="btn reporter">
+				            <a href="/agentSignup" name="agent" id="agent">Agent Signup</a>
+				         </div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

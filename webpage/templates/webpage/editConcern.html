@@ -1,0 +1,63 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% block css %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+<!--
+    <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		
+		{% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'webpage/bootstrap.css' %}"/>
+		
+
+		
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+		
+		
+
+		<title>Agent Signup</title>
+	</head>
+	-->
+
+
+{% block content %}
+		<section id="main" class="container">
+			<header>
+				<h2>Edit Concern</h2>
+				<p>Please enter your modifications</p>
+			</header>
+			<div class="row">
+				<div class="12u">
+
+			<!-- Table -->
+					<section class="box">
+						<div class="table-wrapper">
+						<div class="main-login main-center">
+							<form method="post" action="/account/editSpecificConcern/id=?={{ concern.concern_id }}">
+							{% csrf_token %}
+
+							  Title:<br>
+							  {{ form.title }}
+							  <br>
+							  Target Agency:<br>
+							  {% for ele in form.agent %}
+							  	{{ ele }}
+							  {% endfor %}
+							  <br>
+							  Content:<br>
+							  {{ form.content }}
+							  <br><br>
+							
+							<button type="submit" href="#" id="concern_submit_button" class="btn btn-primary btn-lg btn-block login-button">Submit</button>
+							</form> 
+						</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</section>
+{% endblock %}
+

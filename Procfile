@@ -1,0 +1,1 @@
+web: gunicorn reportit.wsgi --log-file -
