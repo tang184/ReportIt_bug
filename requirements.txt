@@ -3,3 +3,4 @@ social-auth-app-django>=1.1.0
 fuzzywuzzy
 boto3
 whitenoise
+dj_database_url
