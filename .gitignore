@@ -1,0 +1,14 @@
+db.sqlite3
+.idea/
+.env
+venv/
+webpage/migrations/
+saved_data.json
+
+*.pyc
+*.DS_Store
+reportit/webpage/migrations/*
+reportit/staticfiles
+settings.cpython-34.pyc
+models.cpython-34.pyc
+.gitignore~
