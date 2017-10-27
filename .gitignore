@@ -12,3 +12,4 @@ reportit/staticfiles
 settings.cpython-34.pyc
 models.cpython-34.pyc
 .gitignore~
+views.cpython-34.pyc

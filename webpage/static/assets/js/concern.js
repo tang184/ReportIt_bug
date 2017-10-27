@@ -28,6 +28,7 @@ $(document).ready(function() {
 
     	var title = $("#id_title").val()
     	var selectagent = $("#selectagent").val();
+        var image = $("#image").val()
     	var content = $("#id_content").val();
 
     	var csrftoken = getCookie('csrftoken');
@@ -44,8 +45,9 @@ $(document).ready(function() {
     	var context = {
     		'title': title,
     		'selectagent':selectagent,
-    		'content':content,    		 
-    	}   	
+    		'content':content,
+            'image':image 		 
+    	}
 		
 
     	$.ajax({
