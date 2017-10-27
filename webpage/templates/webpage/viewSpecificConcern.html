@@ -156,10 +156,10 @@
 								</div>
 
 								<div class="col-md-6">
-									{% if concern.image %}
+									{% if not concern.image %}
 										<img src="{% static 'images/not-available.jpg' %}">
 									{% else %}
-										<img src="{% static 'images/not-available.jpg' %}">
+										<img height="300px" width="300px" src="{{concern.image}}">
 									{% endif %}
 								</div>
 								
