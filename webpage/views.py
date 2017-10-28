@@ -333,8 +333,10 @@ def searchConcern(request):
         #print(search)
 
         concern = Concern.objects.all()
-
+        """
         concern = list(concern)
+
+        
 
         for i in range(len(concern)):
             for j in range(i + 1, len(concern)):
@@ -342,9 +344,10 @@ def searchConcern(request):
                     p = concern[i]
                     concern[i] = concern[j]
                     concern[j] = p
+        """
 
 
-        print(concern)
+        #print(concern)
 
 
         fuzz.ratio("this is a test", "this is a test!")
