@@ -368,7 +368,7 @@ def viewConcern(request):
             concern = []
 
             for i in range(len(v)):
-                p = v[i].target_agent.all().filter(user=request.user)
+                p = v[i].target_agent.all().filter()
                 if (len(p) != 0):
                     concern.append(v[i])
 
@@ -376,7 +376,7 @@ def viewConcern(request):
         return render(request, 'webpage/viewPersonalConcern.html', locals())
     else:
         current_reporter = current_reporter.get()
-        concern = Concern.objects.filter(reporter=current_reporter, isSolved=False)
+        concern = Concern.objects.filter(isSolved=False)
 
     return render(request, 'webpage/viewPersonalConcern.html', locals())
 
