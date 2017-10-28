@@ -389,7 +389,7 @@ def viewConcern(request):
 def viewAllConcerns(request):
     #current_reporter = Reporter.objects.filter(user=request.user)
 
-    concern = Concern.objects.filter(isSolved=False)
+    concern = Concern.objects.filter()
 
     return render(request, 'webpage/viewAllConcerns.html', locals())
 
