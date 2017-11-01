@@ -937,7 +937,7 @@ def third_party_sign_in(request):
     user_object = request.user
     current_reporter = Reporter.objects.filter(user=request.user)
     #print(request)
-    #print(request.user)
+    print(request.user)
     if (len(current_reporter) == 0):
         global dict
         if request.user in dict.keys():
@@ -947,10 +947,12 @@ def third_party_sign_in(request):
             #if user_object.last_login == None:
             #if User.objects.filter(username=request.user.username).exists():
             print("successfully in")
+            """
             group, created = Group.objects.get_or_create(name="Reporter")
             if created:
                 group.save()
             user_object.groups.add(group)
+            """
             reporter = Reporter(user = user_object)
             reporter.save()
             print ("successfully saved")
