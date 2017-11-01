@@ -16,7 +16,7 @@ class ReporterSignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
-        User._meta.get_field('email')._unique = True
+        #User._meta.get_field('email')._unique = True
 
 
 class ReporterAdditionalForm(forms.ModelForm):
@@ -38,7 +38,7 @@ class AgentSignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
-        User._meta.get_field('email')._unique = True
+        #User._meta.get_field('email')._unique = True
 
 class AdditionalForm(forms.ModelForm):
     class Meta:
