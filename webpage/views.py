@@ -225,7 +225,7 @@ def editProfile(request):
         profile_user.address = address
         profile_user.phone_number = phone
         profile_user.about = bio
-        profile_user.save()
+        #profile_user.save()
         user.save()
 
         return render(request, 'webpage/profile.html', context)
