@@ -888,7 +888,7 @@ def unsolveSpecificConcern(request):
             concern = Concern.objects.filter(id=concern_id)
             concern = concern.get()
 
-            concern.isSolved = False
+            #concern.isSolved = False
             concern.save()
 
             concern = Concern.objects.filter()
@@ -919,7 +919,7 @@ def unsolveSpecificConcern(request):
 
         concern = concern.get()
 
-        concern.isSolved = False
+        #concern.isSolved = False
         concern.save()
 
         concern = Concern.objects.filter(isSolved=False)
