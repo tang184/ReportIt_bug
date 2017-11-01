@@ -110,6 +110,20 @@
 									<button type="submit" id="unsolve_submit_button" class="btn btn-warning ">Respond</button>
 									</form>
 
+
+									<form method="post" action="/account/upvoteSpecificConcern/id?={{ concern.id }}">
+
+									{% csrf_token %}
+
+									<button type="submit" id="upvote_submit_button" class="btn btn-info ">Upvote</button>
+									</form>
+
+									<form method="post" action="/account/downvoteSpecificConcern/id?={{ concern.id }}">
+
+									{% csrf_token %}
+									<button type="submit" id="downvote_submit_button" class="btn btn-warning ">Downvote</button>
+									</form> 
+
 								{% elif isagent %}
 
 									{% if not concern.isSolved %}
@@ -151,6 +165,14 @@
 									{% csrf_token %}
 									<button type="submit" id="downvote_submit_button" class="btn btn-warning ">Downvote</button>
 									</form> 
+
+
+									<form method="post" action="/account/respondConcern/id?={{ concern.id }}">
+
+									{% csrf_token %}
+									<textarea rows="4" cols="50" name="respond" id="respond" maxlength="500" /></textarea>
+									<button type="submit" id="unsolve_submit_button" class="btn btn-warning ">Respond</button>
+									</form>
 
 								{% endif %}
 								</div>
