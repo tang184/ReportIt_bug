@@ -48,7 +48,7 @@ $(document).ready(function() {
     		'content':content,
             'image':image 		 
     	}
-        
+        console.log(a)
 
     	$.ajax({
             type: "POST",

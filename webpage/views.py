@@ -33,7 +33,7 @@ from fuzzywuzzy import process
 import hashlib
 import string
 import random
-
+import time
 
 # Testing_mode = True # Comment out this to enable real upload to s3
 
@@ -458,6 +458,9 @@ def editSpecificConcern(request):
         #print(json_data)
         new_concern=concern.get()
         #print(concern)
+        new_concern.target_agent.clear()
+        print("hello world")
+        print(json_data)
 
         new_concern.content = json_data['content']
         new_concern.title = json_data['title']
@@ -466,8 +469,13 @@ def editSpecificConcern(request):
         total_agent = Agent.objects.all()
 
         target_agents = []
+
+        print(total_agent)
+
         for ele in total_agent:
-            if (ele.legal_name in json_data['selectagent']):
+            print(ele)
+            if (ele.user.username in json_data['selectagent']):
+                #print(ele.user.username)
                 new_concern.target_agent.add(ele)
                 target_agents.append(ele)
 
@@ -522,6 +530,8 @@ def editSpecificConcern(request):
             if (len(concern) != 1):
                 concern = Concern.objects.filter(reporter=current_reporter)
                 concernNotExist = True
+
+                time.sleep(5)
 
                 if (len(concern) > 1):
                     print ("Error! Multiple concern tends to have identical id! Combination is: " + str(request.user) + str(concern_id))
@@ -578,7 +588,7 @@ def editSpecificConcern(request):
                 total_agent = Agent.objects.all()
                 agent_legalnames = []
                 for ele in total_agent:
-                    agent_legalnames.append(ele.legal_name)
+                    agent_legalnames.append(ele.user.username)
 
                 return render(request, 'webpage/editConcern.html', locals())
 
