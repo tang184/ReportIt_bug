@@ -30,7 +30,7 @@ class Agent(models.Model):
     address = models.CharField(verbose_name='Address', max_length=300)
     #agentimage = models.CharField(verbose_name='Agent Badge Logo', max_length=300, validators=[validateURL], default=None)
     agentverifile = models.CharField(verbose_name='Agent verification file', max_length=300, validators=[validateURL], default=None, blank=True)
-    about = models.CharField(verbose_name='About', max_length=300, default=None)
+    about = models.CharField(verbose_name='About', max_length=300, blank=True, null=True)
     # isVerified = models.BooleanField(default=False)
 
     def __str__(self):
