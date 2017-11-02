@@ -23,9 +23,9 @@ function register_submit() {
 
 	var files = document.getElementById("file_input").files;
 	var file = files[0];
-	if (!file) {
-		return alert("Please upload your verification file!");
-	}
+	// if (!file) {
+	// 	return alert("Please upload your verification file!");
+	// }
 
 	document.getElementById('id_agentverifile').disabled = false;
 	reg_form.submit();
