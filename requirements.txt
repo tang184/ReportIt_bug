@@ -6,3 +6,4 @@ whitenoise
 dj_database_url
 psycopg2
 gunicorn
+boto
