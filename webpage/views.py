@@ -1163,7 +1163,7 @@ def sign_s3(request):
     agent = agents.get()
     orig_file = agent.agentverifile
     agent.agentverifile = extracted_data['url'].replace(" ", "+")
-    agent.save()
+    # agent.save()
 
     # Delete the original file
     files = File.objects.filter(url=orig_file)
@@ -1171,7 +1171,7 @@ def sign_s3(request):
         print ("Error! Agent should have exactly one verification file. But " + str(len(files)) + " found")
         print (orig_file)
     else:
-        file = files.get()
+        file = files[0]
         
         conn = S3Connection(extracted_data['access_key'], extracted_data['secret_key'])
         b = Bucket(conn, extracted_data['bucket_name'])

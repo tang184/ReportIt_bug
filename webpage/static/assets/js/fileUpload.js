@@ -18,7 +18,7 @@ function getSignedRequest(file){
 				var response = JSON.parse(xhr.responseText);
 				uploadFile(file, response.data, response.rul);
 			} else {
-				alert("Could not get signed URL.");
+				// alert("Could not get signed URL.");
 			}
 		}
 	}
