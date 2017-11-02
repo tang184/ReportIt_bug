@@ -282,11 +282,14 @@ def submitConcern(request):
             print (agent_email)
             list_of_agents.append(agent_email)
 
+        """
+
         #send email to agent
         email = EmailMessage('A New Concern Has Been Submitted to You', 'A New Concern Has Been Submitted to You',
                                  to = list_of_agents)
         email.send()
         print ("email sent successfully")
+        """
 
         current_reporter.historical_concern_count += 1
         current_reporter.save()
