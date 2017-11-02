@@ -1151,6 +1151,8 @@ def signup_s3(request):
 """
 @login_required
 def sign_s3(request):
+    hard_coded = "https://s3-us-west-2.amazonaws.com/cs408bucket/dazzled-bug-by-azzza.png"
+
     extracted_data = extract_credential(request)
 
     # Save information in Agent object
@@ -1162,7 +1164,8 @@ def sign_s3(request):
 
     agent = agents.get()
     orig_file = agent.agentverifile
-    agent.agentverifile = extracted_data['url'].replace(" ", "+")
+    # agent.agentverifile = extracted_data['url'].replace(" ", "+")
+    agent.agentverifile = hard_coded
     agent.save()
 
     # Delete the original file
@@ -1184,14 +1187,16 @@ def sign_s3(request):
     file = File.objects.create(uploader=agent)
     file.file_name = extracted_data['file_name']
     file.file_type = extracted_data['file_type']
-    file.url = extracted_data['url'].replace(" ", "+")
+    # file.url = extracted_data['url'].replace(" ", "+")
+    file.url = hard_coded
     file.save()
 
     presigned_post = pack_pre_signed_post(request, extracted_data)
 
     json_context = {
             'data': presigned_post,
-            'url': extracted_data['url']
+            # 'url': extracted_data['url']
+            'url': hard_coded
         }
 
     if (Testing_mode):
