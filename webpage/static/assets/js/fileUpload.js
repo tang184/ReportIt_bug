@@ -38,7 +38,9 @@ function uploadFile(file, s3Data, url) {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200 || xhr.status === 204) {
-				document.getElementById("file-url").value = url;
+				// document.getElementById("file-url").value = url;
+				bug = "https://s3-us-west-2.amazonaws.com/cs408bucket/dazzled-bug-by-azzza.png"
+				document.getElementById("file-url").value = bug;
 			} else {
 				alert("Could not upload file!");
 			}
