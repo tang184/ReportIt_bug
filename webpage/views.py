@@ -1204,6 +1204,8 @@ def sign_s3(request):
 """
 @login_required
 def signpicture_s3(request):
+    hard_coded = "https://s3-us-west-2.amazonaws.com/cs408bucket/dazzled-bug-by-azzza.png"
+
     file_path = "image/"
     extracted_data = extract_credential(request, file_path)
 
@@ -1216,18 +1218,20 @@ def signpicture_s3(request):
 
     reporter = reporters.get()
 
+
     # Properly store the file object
     file = File.objects.create(uploader=None)
     file.file_name = extracted_data['file_name']
     file.file_type = extracted_data['file_type']
-    file.url = extracted_data['url'].replace(" ", "+")
+    # file.url = extracted_data['url'].replace(" ", "+")
+    file.url = hard_coded
     file.save()
 
     presigned_post = pack_pre_signed_post(request, extracted_data)
 
     json_context = {
             'data': presigned_post,
-            'url': extracted_data['url']
+            'url': hard_coded
         }
 
     if (Testing_mode):
