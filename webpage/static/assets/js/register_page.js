@@ -11,9 +11,9 @@ function fileElement() {
 	    }
 	}
 
-	var isVerified = document.getElementById("id_isVerified");
-	isVerified.label.innerHTML = "";
-	isVerified.hidden = true;
+	// var isVerified = document.getElementById("id_isVerified");
+	// isVerified.label.innerHTML = "";
+	// isVerified.hidden = true;
 }
 
 function register_submit() {
